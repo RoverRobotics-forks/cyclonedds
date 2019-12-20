@@ -103,15 +103,15 @@ ddsrt_cond_waituntil(
 
   assert(cond != NULL);
   assert(mutex != NULL);
+  assert(abstime >= 0);
 
   if (abstime == DDS_NEVER) {
     ddsrt_cond_wait(cond, mutex);
     return true;
   }
-  if (abstime > 0) {
-    ts.tv_sec = abstime / DDS_NSECS_IN_SEC;
-    ts.tv_nsec = abstime % DDS_NSECS_IN_SEC;
-  }
+
+  ts.tv_sec = abstime / DDS_NSECS_IN_SEC;
+  ts.tv_nsec = abstime % DDS_NSECS_IN_SEC;
 
   switch (pthread_cond_timedwait(&cond->cond, &mutex->mutex, &ts)) {
     case 0:

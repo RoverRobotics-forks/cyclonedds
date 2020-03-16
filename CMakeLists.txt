@@ -215,7 +215,7 @@ if(BUILD_IDLC)
   add_subdirectory(examples)
 endif()
 
-option(BUILD_DOCS "Build documentation." OFF)
+option(BUILD_DOCS "Build documentation." ON)
 if(BUILD_DOCS)
   add_subdirectory(docs)
 endif()
